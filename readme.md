@@ -3,7 +3,8 @@
 ### 1. Go to the project directory
 
 ```bash
-cd "/Users/macworld/Downloads/DSA Project"
+cd "/DSA-Project Folder"
+{wherever your project is located}
 ```
 
 ### 2. Build the main application
@@ -37,4 +38,3 @@ g++ -std=c++17 tests/test_energy_system_basic.cpp energy_system.cpp community_gr
 ./tests/test_priority_queue
 ./tests/test_energy_system_basic
 ```
-

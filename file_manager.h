@@ -320,7 +320,7 @@ public:
         time_t now = time(0);
         struct tm* timeinfo = localtime(&now);
         char filename[100];
-        sprintf(filename, "energy_report_%04d-%02d-%02d_%02d-%02d.txt",
+        snprintf(filename, sizeof(filename), "energy_report_%04d-%02d-%02d_%02d-%02d.txt",
                 timeinfo->tm_year + 1900,
                 timeinfo->tm_mon + 1,
                 timeinfo->tm_mday,
