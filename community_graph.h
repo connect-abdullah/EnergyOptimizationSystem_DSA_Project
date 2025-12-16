@@ -20,10 +20,10 @@ struct Home {
     Home(string id, string addr, float prod, float cons, float battery)
         : homeID(id), address(addr), currentProduction(prod), 
           currentConsumption(cons), batteryLevel(battery) {
-        excessEnergy = prod - cons;
+        excessEnergy = prod - cons; // If positive → can share energy, If negative → needs energy
     }
     
-    void updateEnergy() {
+    void updateEnergy() { // Update excess energy based on current production and consumption
         excessEnergy = currentProduction - currentConsumption;
     }
 };

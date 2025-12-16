@@ -7,7 +7,8 @@ void CommunityGraph::findAllNeighborsBFS(string startHomeID, string* neighbors, 
     count = 0;
     bool visited[100] = {false};
     BFSQueue q;
-    
+
+    // visited have hashed index values
     int startIndex = hashHomeID(startHomeID);
     visited[startIndex] = true;
     q.enqueue(startHomeID);
@@ -16,6 +17,7 @@ void CommunityGraph::findAllNeighborsBFS(string startHomeID, string* neighbors, 
     cout << "\nBFS Traversal:" << endl;
     cout << "Level 0: " << startHomeID << " (Starting home)" << endl;
     
+    // loop for all neighbors
     while (!q.isEmpty()) {
         int levelSize = q.getSize();
         level++;
@@ -24,9 +26,12 @@ void CommunityGraph::findAllNeighborsBFS(string startHomeID, string* neighbors, 
             cout << "Level " << level << ": ";
         }
         
+        // run till the levelSize. LevelSize is the number of homes at the current level.
         for (int i = 0; i < levelSize; i++) {
+            // dequeue the current home, and explore its neighbors.
             string currentHome = q.dequeue();
             
+            // double pointer is used to get the head of the linkedList stored in the adjacencyList against the key.
             GraphEdge** edgeList = adjacencyList.get(currentHome);
             if (!edgeList || *edgeList == nullptr) continue;
             
@@ -56,15 +61,16 @@ void CommunityGraph::findAllNeighborsBFS(string startHomeID, string* neighbors, 
 float CommunityGraph::findCheapestPath(string startHome, string targetHome, string* path, int& pathLength) {
     cout << "\n===== Dijkstra: Finding Cheapest Path =====" << endl;
     cout << "From: " << startHome << " -> To: " << targetHome << endl;
-    
+    // Find all homes in the community.
     string allHomes[100];
     int homeCountLocal;
     homes.getAllKeys(allHomes, homeCountLocal);
     
+    // Initialize distance, previous, and visited arrays.
     float distance[100];
     string previous[100];
     bool visited[100];
-    
+    // Initialize distance to infinity and visited to false.
     for (int i = 0; i < 100; i++) {
         distance[i] = 999999;
         visited[i] = false;
@@ -114,12 +120,12 @@ float CommunityGraph::findCheapestPath(string startHome, string targetHome, stri
                     break;
                 }
             }
-            
+            // edge cost is 5 times the distance.
             if (neighborIdx != -1 && !visited[neighborIdx]) {
                 float edgeCost = edge->distance * 5;
                 float newDist = distance[minIdx] + edgeCost;
                 
-                if (newDist < distance[neighborIdx]) {
+                if (newDist < distance[neighborIdx]) { // If the new distance is less than the current distance, update the distance and previous.
                     distance[neighborIdx] = newDist;
                     previous[neighborIdx] = currentHome;
                     cout << "  Updated " << edge->neighborID << " cost to " << newDist << endl;

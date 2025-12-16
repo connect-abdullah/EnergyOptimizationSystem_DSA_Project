@@ -38,3 +38,4 @@ g++ -std=c++17 tests/test_energy_system_basic.cpp energy_system.cpp community_gr
 ./tests/test_priority_queue
 ./tests/test_energy_system_basic
 ```
+
