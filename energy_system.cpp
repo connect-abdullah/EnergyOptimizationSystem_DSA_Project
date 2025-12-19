@@ -464,7 +464,7 @@ void EnergyOptimizationSystem::checkAndExecuteScheduledTasks() {
     }
 }
 
-// ← NEW: File handling implementations
+// File handling implementations
 void EnergyOptimizationSystem::saveAllData() {
     cout << "\n💾 Saving system data..." << endl;
     bool success = true;
@@ -527,7 +527,7 @@ void EnergyOptimizationSystem::loadAllData() {
     cout << "🚀 System ready!" << endl;
 }
 
-// ← NEW: Update home consumption when devices change
+// Update home consumption when devices change
 void EnergyOptimizationSystem::updateMyHomeConsumption() {
     if (!communitySetup) return;  // Only if community is set up
     
